@@ -1,4 +1,4 @@
-Lawrence Lou
+Name: Lawrence Lou
 # Java_coding_notes
 Leetcode and algorithm associated questions
 
