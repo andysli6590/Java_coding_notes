@@ -1,0 +1,83 @@
+//只用递归而不用其他任何额外的数据结构，实现栈中的元素的逆序并放回原先的栈里
+
+//如果题目没有说“不许使用额外的数据结构，并且没有要求放回到原先的栈里”，这题可以建一个新stack，把旧stack中的元素依次弹出并且加入到新的stack中，然后返回新stack就可以了。
+public Stack<Integer> reverseStack(Stack<Integer> input) {
+	if (input == null) { return input; }
+	Stack<Integer> res = new Stack<>();
+	while (!input.isEmpty()) {
+		res.push(input.pop());
+	}
+	return res;
+}
+
+//如果题目没有说“不许使用额外的数据结构”，但是要求放回到原先的栈里，这题可以建一个Queue(Deque)，把旧stack中的元素依次弹出并且加入到queue中，然后把queue中的元素放回原先的stack就可以了。
+public void reverseStack(Stack<Integer> input) {
+	if (input == null) { return input; }
+/*
+建议用Deque统一实现stack和queue的功能。但是Deque不能把null当元素加进去。如果原题中stack里可以存null，只能用 Queue<Integer> temp = new LinkedList<>();
+*/
+	Deque<Integer> temp = new ArrayDeque<>(); 	
+while (!input.isEmpty()) {
+		temp.addLast(input.pop());
+	}
+while (!temp.isEmpty()) {
+	input.push(temp.pollFirst());
+}
+}
+
+//最后是完全按照最严格的要求，只用递归不用额外数据结构，放回原先的栈里。
+//这题是个比较复杂的题了，虽然代码量不大，但是在主函数中又要调用辅助函数，又要调用主函数自己。在辅助函数中也要调用自己。逻辑交织在一起，不是很容易看透。建议自己拿{1， 2， 3}跑一跑。
+public void reverseStack(Stack<Integer> input) {
+	if (input == null || input.isEmpty()) { return;	}
+	Integer val = getAndRemoveBottom(input);
+reverseStack(input);
+	input.push(val);
+}
+// 辅助函数的作用是拿出栈中最底层的元素并返回，返回后原先的栈里就没有被返回的元素了。 举个例子：原先的栈是{1， 2， 3}。运行后，栈变成了{1， 2}，并且返回3。
+private Integer getAndRemoveBottom(Stack<Integer> input) {
+	Integer cur = input.pop();
+	if (input.isEmpty()) {
+		return cur;
+	}
+	Integer last = getAndRemoveBottom(input);
+	input.push(cur);
+	return last;
+}
+
+public class Solution {
+    //reverse the elements in the stack without using extra data structure space and return in the same stack
+    public static void reverseStack(Stack<Integer> input) {
+        if (input == null || input.isEmpty()) return;
+        Integer element = pollBottomElementFromStack(input);
+        reverseStack(input);
+        input.push(element);
+    }
+
+    private static int pollBottomElementFromStack(Stack<Integer> input) {
+        Integer current = input.pop();
+        if (input.isEmpty()) return current;
+        Integer last = pollBottomElementFromStack(input);
+        input.push(current);
+        return last;
+    }
+
+    private static void printStackElement(Stack<Integer> stack) {
+        if (stack == null || stack.isEmpty()) return;
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop());
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        printStackElement(stack); //3,2,1
+        reverseStack(stack);
+        printStackElement(stack); //1,2,3
+    }
+}
+
+
