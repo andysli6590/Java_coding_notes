@@ -14,14 +14,16 @@ Note: If the given node has no in-order successor in the tree, return null.
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+//inorder successor
 public class Solution {
     public TreeNode inorderSuccessor_recursion(TreeNode root, TreeNode p) {
         if (root == null) return null;
         if (root.val > p.val) {
-            TreeNode left = inorderSuccessor(root.left, p);
+            TreeNode left = inorderSuccessor_recursion(root.left, p);
             return left == null ? root : left;
         } else {
-            return inorderSuccessor(root.right, p);
+            return inorderSuccessor_recursion(root.right, p);
         }
     }
     
@@ -38,3 +40,33 @@ public class Solution {
         return inorderSuccessor;
     }
 }
+
+
+//inorder predecessor
+public class Solution {
+    public TreeNode inorderPredecessor_recursion(TreeNode root, TreeNode p) {
+        if (root == null) return root;
+        if (root.val < p.val) {
+            TreeNode right = inorderPredecessor_recursion(root.right, p);
+            return right == null ? root : right;
+        } else {
+            return inorderPredecessor_recursion(root.left, p);
+        }
+    }
+    
+    public TreeNode inorderPredecessor_iterative(TreeNode root, TreeNode p) {
+        if (root == null) return null;
+        TreeNode inorderPredecessor = null;
+        while (root != null) {
+            if (root.val < p.val) {
+                inorderPredecessor = root;
+                root = root.right;
+            } else {
+                root = root.left;
+            }
+        }
+        return inorderPredecessor;
+    }
+}
+
+
