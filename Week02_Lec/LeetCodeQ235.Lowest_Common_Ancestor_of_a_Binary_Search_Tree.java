@@ -40,7 +40,7 @@ public class Solution {
         return root;
     }
         
-        public TreeNode lowestCommonAncestor_iterative(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor_iterative(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) return root;
         while (root != null) {
             if (root.val < p.val && root.val < q.val) {
