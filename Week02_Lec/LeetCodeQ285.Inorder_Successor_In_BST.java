@@ -24,4 +24,17 @@ public class Solution {
             return inorderSuccessor(root.right, p);
         }
     }
+    
+    public TreeNode inorderSuccessor_iterative(TreeNode root, TreeNode p) {
+        TreeNode inorderSuccessor = null;
+        while (root != null) {
+            if (root.val > p.val) {
+                inorderSuccessor = root;
+                root = root.left;
+            } else {
+                root = root.right;
+            }
+        }
+        return inorderSuccessor;
+    }
 }
