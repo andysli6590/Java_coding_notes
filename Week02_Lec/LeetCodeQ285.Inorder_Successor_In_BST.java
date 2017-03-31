@@ -41,6 +41,19 @@ public class Solution {
     }
 }
 
+/*
+explaination:
+for successor, 
+    left: is the right subtee or the root
+    root: is the right subtree
+    right: is the right subtee
+    
+ for predecessor:
+    left: is the left subtree
+    root: is the left subtree
+    right: is the left subtree or the root
+*/
+
 
 //inorder predecessor
 public class Solution {
