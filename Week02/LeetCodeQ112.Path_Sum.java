@@ -57,7 +57,30 @@ public class Solution {
         }
         return false;
     }
-  
     
+    //iteration, approach 2, post order traverse
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null) return false;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode prev = null, current = root;
+        int result = 0;
+        while (!stack.isEmpty() || current != null) {
+            while (current != null) {
+                stack.offerLast(current);
+                result += current.val;
+                current = current.left;
+            }
+            current = stack.peekLast();
+            if (current.left == null && current.right == null && result == sum) return true;
+            if (current.right != null && prev != current.right) {
+                current = current.right;
+            } else {
+                prev = current;
+                result -= stack.pollLast().val;
+                current = null;
+            }
+        }
+        return false;
+    }
     
 }
