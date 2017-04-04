@@ -25,6 +25,7 @@ to
  * }
  */
 public class Solution {
+     //recursion
     public TreeNode invertTree(TreeNode root) {
         if (root == null) return root;
         root.left = invertTree(root.left);
@@ -34,4 +35,22 @@ public class Solution {
         root.right = temp;
         return root;
     }
+     
+     //iteration - BFS, using queue
+     public TreeNode invertTree(TreeNode root) {
+        if (root == null) return root;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode parent = queue.poll();
+            TreeNode temp = parent.left;
+            parent.left = parent.right;
+            parent.right = temp;
+            if (parent.left != null) queue.offer(parent.left);
+            if (parent.right != null) queue.offer(parent.right);
+        }
+        return root;
+    }
+     
+     
 }
