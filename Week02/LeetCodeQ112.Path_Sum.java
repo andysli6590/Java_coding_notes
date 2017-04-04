@@ -32,5 +32,32 @@ public class Solution {
             return root.val == sum;
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);    
     }
+  
+    //iteration, approach 1, post order traverse
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null) return false;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        int result = 0;
+        stack.offerLast(root);
+        result += root.val;
+        TreeNode prev = root, current = null;
+        while (!stack.isEmpty()) {
+            current = stack.peekLast();
+            if (current.left != null && prev != current.left && prev != current.right) {
+                stack.offerLast(current.left);
+                result += current.left.val;
+            } else if (current.right != null && prev != current.right) {
+                stack.offerLast(current.right);
+                result += current.right.val;
+            } else {
+                prev = current;
+                if (current.left == null && current.right == null && result == sum) return true;
+                result -= stack.pollLast().val;
+            }
+        }
+        return false;
+    }
+  
+    
     
 }
