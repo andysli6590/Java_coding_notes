@@ -38,4 +38,19 @@ public class Solution {
         if (Math.abs(left.height - right.height) > 1) return new ResultType(Integer.MAX_VALUE, false);
         return new ResultType(Math.max(left.height, right.height) + 1, true);
     }
+   
+   
+   //optimaized recursion solution, using -1 to indicate the tree is not balanced, and other value to indicate the tree height    
+   public boolean isBalanced(TreeNode root) {
+        return isBalancedHelper(root) != -1;
+    }
+    
+    private int isBalancedHelper(TreeNode root) {
+        if (root == null) return 0;
+        int left = isBalancedHelper(root.left);
+        int right = isBalancedHelper(root.right);
+        if (left == -1 || right == -1) return -1;
+        if (Math.abs(left - right) > 1) return -1;
+        return Math.max(left, right) + 1;
+    }
 }
