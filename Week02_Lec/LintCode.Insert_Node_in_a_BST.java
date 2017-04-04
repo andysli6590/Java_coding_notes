@@ -23,7 +23,7 @@ public class Solution {
      * @return: The root of the new binary search tree.
      */
     public TreeNode insertNode(TreeNode root, TreeNode node) {
-        // write your code here
+        // iteration
         if (root == null) return node;
         TreeNode prev = null;
         TreeNode current = root;
@@ -40,6 +40,18 @@ public class Solution {
             prev.right = node;
         } else {
             prev.left = node;
+        }
+        return root;
+    }
+    
+    
+    public TreeNode insertNode(TreeNode root, TreeNode node) {
+        // recursion
+        if (root == null) return node;
+        if (root.val > node.val) {
+            root.left = insertNode(root.left, node);
+        } else {
+            root.right = insertNode(root.right, node);
         }
         return root;
     }
