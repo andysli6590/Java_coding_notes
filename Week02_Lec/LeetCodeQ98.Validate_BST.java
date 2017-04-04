@@ -33,4 +33,34 @@ public class Solution {
         if (root.val >= max || root.val <= min) return false;
         return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
+    
+    
+    //using ResultType approach
+    class ResultType {
+        boolean is_bst;
+        int maxValue, minValue;
+        ResultType(boolean is_bst, int maxValue, int minValue){
+            this.is_bst = is_bst;
+            this.maxValue = maxValue;
+            this.minValue = minValue;
+        }
+    }
+    
+    public boolean isValidBST(TreeNode root) {
+        return isValid(root).is_bst;
+    }
+    
+    private ResultType isValid(TreeNode root) {
+        if (root == null) {
+            return new ResultType(true, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+        ResultType left = isValid(root.left);
+        ResultType right = isValid(root.right);
+        
+        if (!left.is_bst || !right.is_bst) return new ResultType(false, 0, 0);
+        if (root.left != null && root.val <= left.maxValue || root.right != null && root.val >= right.minValue) 
+            return new ResultType(false, 0, 0);
+            
+        return new ResultType(true, Math.max(root.val, right.maxValue), Math.min(root.val, left.minValue));
+    }
 }
