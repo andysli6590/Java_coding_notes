@@ -48,6 +48,33 @@ Another valid answer is [5,2,6,null,4,null,7].
  */
 public class Solution {
     
+    //recursuon
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if (root == null) return root;
+        if (root.val < key) {
+            root.right = deleteNode(root.right, key);
+        } else if (root.val > key) {
+            root.left = deleteNode(root.left, key);
+        } else {
+            if (root.left == null) return root.right;
+            else if (root.right == null) return root.left;
+            //need to find the replace node from the right subtree
+            TreeNode newNode = findReplaceNode(root.right);
+            root.val = newNode.val;
+            root.right = deleteNode(root.right, root.val);
+        }
+        return root;
+    }
+    
+    private TreeNode findReplaceNode(TreeNode node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
+    
+    
+    /***************************************************************************/
     //iteration - using the replacement of the most left node of right subtree
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) return root;
