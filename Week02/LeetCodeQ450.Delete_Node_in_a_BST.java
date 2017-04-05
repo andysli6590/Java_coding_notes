@@ -112,5 +112,71 @@ public class Solution {
             current.right = node.right;
         }
     }
+    
+    
+    /**********************************************************/
+    //iteration - using the replacement of the most right node of left subtree
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if (root == null) return root;
+        TreeNode dummy = new TreeNode(-1);
+        dummy.right = root;
+        TreeNode parent = findParent(dummy, key);
+        TreeNode node = null;
+        if (parent == null) return dummy.right;
+        if (parent.left != null && parent.left.val == key) {
+            node = parent.left;
+        } else if (parent.right != null && parent.right.val == key) {
+            node = parent.right;
+        } else {
+            return dummy.right;
+        }
+        deleteNode(parent, node);
+        return dummy.right;
+    }
+    
+    private TreeNode findParent(TreeNode parent, int key) {
+        TreeNode current = parent.right;
+        while (current != null && current.val != key) {
+            parent = current;
+            if (current.val < key) {
+                current = current.right;
+            } else {
+                current = current.left;
+            }
+        }
+        if (current != null && current.val == key) return parent;
+        else return null;
+    }
+    
+    private void deleteNode(TreeNode parent, TreeNode node) {
+        if (node.left == null) {
+            if (parent.left == node) {
+                parent.left = node.right;
+            } else {
+                parent.right = node.right;
+            }
+        } else {
+            TreeNode father = node;
+            TreeNode newNode = node.left;
+            while (newNode.right != null) {
+                father = newNode;
+                newNode = newNode.right;
+            }
+            
+            if (father.left == newNode) {
+                father.left = newNode.left;
+            } else {
+                father.right = newNode.left;
+            }
+            
+            if (parent.left == node) {
+                parent.left = newNode;
+            } else {
+                parent.right = newNode;
+            }
+            newNode.left = node.left;
+            newNode.right = node.right;
+        }
+    }
 }
 
