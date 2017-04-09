@@ -3,7 +3,7 @@ public class Solution {
      * @param A an integer array
      * @return void
      */
-    //Time: O(n^2), space: O(1)
+    //Time: O(n^2), space: O(1), unstable
     public void sortIntegers(int[] nums) {
         //bubble sort
         for (int i = 0; i < nums.length; i++) {
