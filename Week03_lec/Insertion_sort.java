@@ -41,4 +41,21 @@ public class Solution {
             nums[j+1] = x;
         }
     }
+    
+    
+    //using System.arrayCopy;
+     public void sortIntegers(int[] nums) {
+        //bubble sort
+        if (nums == null || nums.length == 0) return;
+        int j, x, k;
+        for (int i = 1; i < nums.length; i++) {
+            x = nums[i];
+            j = k = i - 1;
+            while (j >= 0 && nums[j] > x) {
+                j--;
+            }
+            System.arrayCopy(nums, j + 1, nums, j + 2, k - j);
+            nums[j + 1] = x;
+        }
+    }
 }
