@@ -29,16 +29,16 @@ public class Solution {
   
   /**********************************/
   //stable implementation
-  public void sortIntegers(int[] A) {
+  public void sortIntegers(int[] nums) {
         int x, j;
-        for (int i = 1; i < A.length; i++) {
-            x = A[i];
+        for (int i = 1; i < nums.length; i++) {
+            x = nums[i];
             j = i - 1;
-            while (j >= 0 && A[j] > x) {
-                A[j+1] = A[j];
+            while (j >= 0 && nums[j] > x) {
+                nums[j+1] = nums[j];
                 j--;
             }
-            A[j+1] = x;
+            nums[j+1] = x;
         }
     }
 }
