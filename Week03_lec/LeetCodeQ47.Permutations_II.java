@@ -12,8 +12,27 @@ For example,
 */
 
 public class Solution {
-    
-    
+  
+    //iteration, using set to prevent duplicates
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null)  return result;
+        result.add(new ArrayList<Integer>());
+        Set<String> cache = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            List<List<Integer>> newResult = new ArrayList<>();
+            for (int j = 0; j <= i; j++) {
+                for (List<Integer> list : result) {
+                    List<Integer> newList = new ArrayList<>(list);
+                    newList.add(j, nums[i]);
+                    String str = newList.toString();
+                    if (cache.add(str)) newResult.add(newList);
+                }
+            }
+            result = newResult;
+        }
+        return result;
+    }    
     
     /*********************************************************************/
     //DFS, back tracking
