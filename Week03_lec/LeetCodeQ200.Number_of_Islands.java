@@ -62,4 +62,43 @@ public class Solution {
             helper(grid, x + dx[i], y + dy[i], visited);
         }
     }
+    
+    /*******************************************************************/
+    //bfs, 染色
+    int[] dx = {0, 0, 1, -1};
+    int[] dy = {1, -1, 0, 0};
+    class Coordinate {
+        int x, y;
+        Coordinate(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0) return 0;
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '0') continue;
+                helper(grid, i, j);
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    private void helper(char[][] grid, int x, int y) {
+        Deque<Coordinate> queue = new ArrayDeque<>();
+        queue.offerLast(new Coordinate(x, y));
+        grid[x][y] = '0';
+        while (!queue.isEmpty()) {
+            Coordinate current = queue.pollFirst();
+            for (int i = 0; i < 4; i++) {
+                Coordinate adj = new Coordinate(current.x + dx[i], current.y + dy[i]);
+                if (adj.x < 0 || adj.x >= grid.length || adj.y < 0 || adj.y >= grid[0].length || grid[adj.x][adj.y] == '0') continue;
+                queue.offerLast(adj);
+                grid[adj.x][adj.y] = '0';
+            }
+        }
+    }
 }
