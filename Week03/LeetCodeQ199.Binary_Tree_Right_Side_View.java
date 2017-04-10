@@ -42,3 +42,22 @@ public class Solution {
         }
         return result;
     }
+   
+   
+   /*****************************************************************************/
+   //DFS, traverse current root, then right child first, and left child last 
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
+        dfsRightView(root, result, 0);
+        return result;
+    }
+    
+    private void dfsRightView(TreeNode root, List<Integer> result, int level) {
+        if (root == null) return;
+        if (level == result.size()) {
+            result.add(root.val);
+        }
+        dfsRightView(root.right, result, level + 1);
+        dfsRightView(root.left, result, level + 1);
+    } 
