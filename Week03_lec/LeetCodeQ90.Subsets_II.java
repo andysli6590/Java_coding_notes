@@ -41,4 +41,29 @@ public class Solution {
             path.remove(path.size() - 1);
         }
     }
+  
+    /*****************************************************/
+    //iteration
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null) return result;
+        result.add(new ArrayList<Integer>());
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            int dupCount = 0;
+            while (i + 1 < nums.length && nums[i] == nums[i+1]) {
+                dupCount++;
+                i++;
+            }
+            int prevNum = result.size();
+            for (int j = 0; j < prevNum; j++) {
+                List<Integer> subset = new ArrayList(result.get(j));
+                for (int k = 0; k <= dupCount; k++) {
+                    subset.add(nums[i]);
+                    result.add(new ArrayList<>(subset));
+                }
+            }
+        }
+        return result;
+    }
 }
