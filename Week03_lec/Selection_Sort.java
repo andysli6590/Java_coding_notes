@@ -4,7 +4,7 @@ public class Solution {
      * @return void
      */
     public void sortIntegers(int[] nums) {
-        //selection sort, unstable
+        //selection sort, this implementation is stable
         if (nums == null || nums.length <= 1) return;
         int n = nums.length;
         int minValueIndex = 0;
