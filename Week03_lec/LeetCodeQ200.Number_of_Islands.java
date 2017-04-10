@@ -36,4 +36,30 @@ public class Solution {
         helper(grid, x, y + 1);
         helper(grid, x, y - 1);
     }
+    
+    /*****************************************************************/
+        //dfs，不用染色的话需要一个额外数组记录访路径
+    int[] dx = {0, 0, 1, -1};
+    int[] dy = {1, -1, 0, 0};
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0) return 0;
+        int count = 0;
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '0' || visited[i][j]) continue;
+                helper(grid, i, j, visited);
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    private void helper(char[][] grid, int x, int y, boolean[][] visited) {
+        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] == '0' || visited[x][y]) return;
+        visited[x][y] = true;
+        for (int i = 0; i < 4; i++) { //four direction search
+            helper(grid, x + dx[i], y + dy[i], visited);
+        }
+    }
 }
