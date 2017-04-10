@@ -36,7 +36,7 @@ public class Solution {
         while (!queue.isEmpty()) {
             int size = queue.size();
             TreeNode current = null;
-            List<Integer> level = new LinkedList<>();
+            List<Integer> level = new LinkedList<>(); //这里有一个优化就是用linkedlist去生成list，这样在头部插入的代价为O(1)
             for (int i = 0; i < size; i++) {
                 current = queue.pollFirst();
                 if (flag) {
