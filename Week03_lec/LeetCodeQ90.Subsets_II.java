@@ -51,14 +51,14 @@ public class Solution {
         Arrays.sort(nums);
         for (int i = 0; i < nums.length; i++) {
             int dupCount = 0;
-            while (i + 1 < nums.length && nums[i] == nums[i+1]) {
+            while (i + 1 < nums.length && nums[i] == nums[i+1]) { //count the duplicates number
                 dupCount++;
                 i++;
             }
             int prevNum = result.size();
             for (int j = 0; j < prevNum; j++) {
                 List<Integer> subset = new ArrayList(result.get(j));
-                for (int k = 0; k <= dupCount; k++) {
+                for (int k = 0; k <= dupCount; k++) { //treat the duplicates as a whole component add into previous result
                     subset.add(nums[i]);
                     result.add(new ArrayList<>(subset));
                 }
