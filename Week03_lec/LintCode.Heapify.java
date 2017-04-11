@@ -35,7 +35,7 @@ public class Solution {
     
     private void swap(int[] nums, int i, int j) {
         if (nums[i] != nums[j]) { //nums[i] = a, nums[j] = b
-            nums[i] ^= nums[j]; //nums[i] a不b，有a没b
+            nums[i] ^= nums[j]; //nums[i] a不b，有a没b, 或者有b没a
             nums[j] ^= nums[i]; //nums[j] 变成a
             nums[i] ^= nums[j]; //nums[i] 现在是b
         }
