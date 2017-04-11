@@ -13,7 +13,7 @@ Sort a linked list in O(n log n) time using constant space complexity.
  */
 public class Solution {
     
-    //merge sort, time complexity: O(nlogn), space complexity: O(1)
+    //merge sort, time complexity: O(nlogn), space complexity: O(1) + O(logn) system stack frame
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode mid = findMiddle(head);
