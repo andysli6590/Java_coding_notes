@@ -42,4 +42,38 @@ public class Solution {
         }
         return result.toString();
     }
+    
+    /********************************************************************/
+    //iteration implementation
+    public String decodeString(String s) {
+        if (s == null || s.length() == 0) return s;
+        Deque<Integer> countStack = new ArrayDeque<>();
+        Deque<String> strStack = new ArrayDeque<>();
+        int index = 0;
+        String result = "";
+        while (index < s.length()) {
+            if (Character.isDigit(s.charAt(index))) {
+                int count = 0;
+                while (Character.isDigit(s.charAt(index))) {
+                    count = count * 10 + s.charAt(index++) - '0';
+                }
+                countStack.offerLast(count);
+            } else if (s.charAt(index) == '[') {
+                strStack.offerLast(result);
+                result = "";
+                index++;   //index++不能写在if/else if 的判断语句里
+            } else if (s.charAt(index) == ']') {
+                StringBuilder temp = new StringBuilder(strStack.pollLast());
+                int currentCount = countStack.pollLast();
+                for (int i = 0; i < currentCount; i++) {
+                    temp.append(result);
+                }
+                result = temp.toString();
+                index++;  //index++不能写在if/else if 的判断语句里
+            } else {
+                result += s.charAt(index++);
+            }
+        }
+        return result;
+    }
 }
