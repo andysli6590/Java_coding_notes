@@ -106,4 +106,56 @@ public class Solution {
             }
         }
     }
+    
+    /************************************************************************/
+    //most optimized dfs solution
+    private int row;
+    private int col;
+    private int[] dx = {1, -1, 0, 0};
+    private int[] dy = {0, 0, 1, -1};
+    public List<List<Integer>> updateMatrix(List<List<Integer>> matrix) {
+        if (matrix == null || matrix.size() == 0 || matrix.get(0).size() == 0) return matrix;
+        row = matrix.size();
+        col = matrix.get(0).size();
+        preSet(matrix);
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix.get(i).get(j) == 1) {
+                    dfsHelper(matrix, 1, i, j);
+                }
+            }
+        }
+        return matrix;
+    }
+    
+    private void preSet(List<List<Integer>> matrix) {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix.get(i).get(j) == 0) continue;
+                boolean flag = false;
+                for (int k = 0; k < 4; k++) {
+                    int x = i + dx[k];
+                    int y = j + dy[k];
+                    if (x < 0 || x >= row || y < 0 || y >= col) continue;
+                    flag |= matrix.get(x).get(y) == 0;
+                }
+                if (!flag) matrix.get(i).set(j, row + col - 2);
+            }
+        }
+    }
+    
+    private void dfsHelper(List<List<Integer>> matrix, int dist, int x, int y) {
+        if (matrix.get(x).get(y) < dist) return; // corner/base case(遇0和已优化路径返回)
+        if (matrix.get(x).get(y) == dist && matrix.get(x).get(y) != 1) return;
+        
+        //current layer set dist
+        matrix.get(x).set(y, dist);
+        
+        for (int i = 0; i < 4; i++) {
+            int xNext = x + dx[i];
+            int yNext = y + dy[i];
+            if (xNext < 0 || xNext >= row || yNext < 0 || yNext >= col) continue;
+            dfsHelper(matrix, dist + 1, xNext, yNext);
+        }
+    }
 }
