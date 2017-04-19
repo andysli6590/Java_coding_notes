@@ -12,7 +12,7 @@ For example,
 */
 
 public class Solution {
-  
+    //BFS
     //iteration, using set to prevent duplicates
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
