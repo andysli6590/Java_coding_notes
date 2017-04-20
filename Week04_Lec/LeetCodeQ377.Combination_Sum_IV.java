@@ -40,6 +40,29 @@ public class Solution {
     
     //memorized search优化解法
     /*******************************************************************************************/
+    //dfs没有优化用memoried search, TLE
+    public int combinationSum4(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return 0;
+        int[] count = new int[target + 1]; 
+        //need to have target + 1 result array size because 0 is 1 way, no number to pick
+        Arrays.fill(count, Integer.MIN_VALUE);
+        count[0] = 1;
+        return helper(nums, target, count);
+    }
     
+    private int helper(int[] nums, int remain, int[] count) {
+        if (count[remain] != Integer.MIN_VALUE) return count[remain]; 
+        //if it is already calculated
+        int result = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (remain >= nums[i]) {
+                result += helper(nums, remain - nums[i], count);
+            }
+        }
+        count[remain] = result;
+        return result;
+    }
+    
+    /**************************************************************************************/
     
 }
