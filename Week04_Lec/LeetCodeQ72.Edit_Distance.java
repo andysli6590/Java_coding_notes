@@ -15,8 +15,6 @@ public class Solution {
     //memorized search
     public int minDistance(String word1, String word2) {
         int[][] count = new int[word1.length() + 1][word2.length() + 1]; //need to open the array count "" as the first
-        Arrays.fill(count, -1);
-        count[0][0] = 0;
         return helper(word1, 0, word2, 0, count);
     }
     
@@ -24,7 +22,7 @@ public class Solution {
         //base case
         if (i == word1.length()) return word2.length() - j;
         if (j == word2.length()) return word1.length() - i;
-        if (count[i][j] != -1) return count[i][j]; //use cached result;
+        if (count[i][j] != 0) return count[i][j]; //use cached result;
         
         int result;
         if (word1.charAt(i) == word2.charAt(j)) {
