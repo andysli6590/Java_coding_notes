@@ -13,6 +13,27 @@ We need to add the allowed max length of the output into the signature.
 
 
 public class Solution {
-    public int combinationSum4(int[] nums, int target, int maxLen) { 
+    private Map<Integer, Map<Integer, Integer>> cache;
+    public int combinationSum4(int[] nums, int target, int maxLen) {
+        if (nums == null || nums.length == 0) return 0;
+        cache = new HashMap<>();
+        return helper(nums, target, 0, maxLen);
+    }
+    
+    private int helper(int[] nums, int remain, int len, int maxLen) {
+        if (len > maxLen) return 0;
+        if (cache.containsKey(remain) && cache.get(remain).containsKey(len)) {
+            return cache.containsKey(remain).get(len);
+        }
+        int count = 0;
+        if (remain == 0) count++;
+        for (int num : nums) {
+            count += helper(nums, remain - num, len + 1, maxLen);
+        }
+        if (!cache.containsKey(target)) {
+            cache.put(target, new HashMap<Integer, Integer>());
+        }
+        cache.get(target).put(len, count);
+        return count;
     }
 }
