@@ -42,7 +42,7 @@ public class Solution {
     /*******************************************************************************************/
     //dfs没有优化用memoried search, TLE
     public int combinationSum4(int[] nums, int target) {
-        if (nums == null || nums.length == 0) return 0;
+        if (nums == null || nums.length == 0  || target < 1) return 0;
         int[] count = new int[target + 1]; 
         //need to have target + 1 result array size because 0 is 1 way, no number to pick
         Arrays.fill(count, Integer.MIN_VALUE);
