@@ -64,5 +64,18 @@ public class Solution {
     }
     
     /**************************************************************************************/
-    
+    //according to memorized search, iteratively fill the count table which is DP
+    public int combinationSum4(int[] nums, int target) {
+        if (nums == null || nums.length == 0 || target < 1) return 0;
+        int[] count = new int[target + 1];
+        count[0] = 1;
+        for (int i = 0; i < count.length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (i >= nums[j]) {
+                    count[i] += count[i - nums[j]];
+                }
+            }
+        }
+        return count[target];
+    }
 }
