@@ -7,7 +7,8 @@ What limitation we need to add to the question to allow negative numbers?
 */
 
 /*
-In order to handle negative integers in the input, the length of the combination sum needs to be restricted, or the search will not stop. 
+In order to handle negative integers in the input, the length of the combination sum needs to be restricted, 
+or the search will not stop. 
 We need to add the allowed max length of the output into the signature.
 */
 
