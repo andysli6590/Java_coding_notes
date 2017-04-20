@@ -24,16 +24,18 @@ public class Solution {
         if (len > maxLen) return 0;
         if (cache.containsKey(remain) && cache.get(remain).containsKey(len)) {
             return cache.containsKey(remain).get(len);
-        }
+        } //if search at current remain and len, the count is calculated, then return 
         int count = 0;
         if (remain == 0) count++;
         for (int num : nums) {
             count += helper(nums, remain - num, len + 1, maxLen);
         }
-        if (!cache.containsKey(target)) {
-            cache.put(target, new HashMap<Integer, Integer>());
+        //cache the count, at the sum at remain and len
+        if (!cache.containsKey(remain)) {
+            cache.put(remain, new HashMap<Integer, Integer>());
         }
-        cache.get(target).put(len, count);
+        cache.get(remain).put(len, count);
+        
         return count;
     }
 }
