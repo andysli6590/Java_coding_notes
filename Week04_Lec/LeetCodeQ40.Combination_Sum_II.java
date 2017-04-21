@@ -34,6 +34,7 @@ public class Solution {
         }
         for (int i = index; i < candidates.length; i++) {
             if (i > index && candidates[i - 1] == candidates[i]) continue; //去重
+            //i == index的时候都不会skip所以1，1，1，1 = 4这种case是包含的，去掉的情况是每一次都是新的1开始的情况
             path.add(candidates[i]);
             if (remain >= candidates[i]) { //pruning
                 dfsHelper(candidates, i + 1, remain - candidates[i], result, path);
