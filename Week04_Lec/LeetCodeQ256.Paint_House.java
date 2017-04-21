@@ -26,6 +26,7 @@ public class Solution {
             int[] temp = cur;
             cur = last;
             last = temp;
+            //这里不能直接用last = cur,这样cur和last会指向同一个内存所存的内容
         }
         return Math.min(last[0], Math.min(last[1], last[2]));
     }
