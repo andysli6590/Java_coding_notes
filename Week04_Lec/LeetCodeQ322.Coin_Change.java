@@ -15,7 +15,7 @@ return -1.
 Note:
 You may assume that you have an infinite number of each kind of coin.
 */
-
+// combination sum IV(最多)的变种题，coin change(最少) *****
 public class Solution {
     //memorized search implementation, idea from drawing recursion/solution tree, and figure out it is a graph
     public int coinChange(int[] coins, int amount) {
