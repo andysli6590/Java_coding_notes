@@ -20,6 +20,7 @@ public class Solution {
         for (int[] cost : costs) {
             for (int i = 0; i < 3; i++) {
                 cur[i] = cost[i] + Math.min(last[(i + 1) % 3], last[(i + 2) % 3]);
+                //select the min from the other two calculated value in last
             }
             int[] temp = cur;
             cur = last;
