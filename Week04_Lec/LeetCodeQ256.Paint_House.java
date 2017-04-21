@@ -26,7 +26,9 @@ public class Solution {
             int[] temp = cur;
             cur = last;
             last = temp;
-            //这里不能直接用last = cur,这样cur和last会指向同一个内存所存的内容
+            //把last指向cur所指的内存内容，把cur指向last的内存内容用来存计算后新的值；
+            //可以把cur[0] = cur[1] = cur[2] = reset成任何值不会影响结果，所需要的就是不同于last的内存空间
+            //这里不能直接用last = cur,这样cur和last会指向同一个内存所存的内容，改变cur的时候会影响到last的值!!!!
         }
         return Math.min(last[0], Math.min(last[1], last[2]));
     }
