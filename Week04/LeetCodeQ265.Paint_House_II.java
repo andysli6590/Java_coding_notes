@@ -27,6 +27,7 @@ The code below modifies the value of costs[][] so we don't need extra space.
 */
 
 public class Solution {
+    //dp idea,因为不是连通图，不能用memorized search
     public int minCostII(int[][] costs) {
         if (costs == null || costs.length == 0 || costs[0].length == 0) {
             return 0;
