@@ -9,7 +9,7 @@ determine the maximum amount of money you can rob tonight without alerting the p
 */
 
 public class Solution {
-    //DFS solution
+    //DFS solution,在leetcode上是超时的
     public int rob(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
