@@ -69,6 +69,24 @@ public class Solution {
     }
     
     /**************************************************************************************/
-    
+    /*There is another approach by converting the problem into Maximum Subarray problem: 
+    LeetCode Maximum Subarray: 4 methods, DP, Divide and Conquer. 
+    That is, from the original array prices, we make a new array called A with A[i] = prices[i] – prices[i-1], 
+    then the answer to best time to buy and sell stock is the same answer the find the maximum sum of consecutive subarray in array A. 
+    The following code implements this idea.
+    */
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int sum = 0;
+        int maxProfit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            sum += prices[i] - prices[i - 1];
+            maxProfit = Math.max(maxProfit, sum);
+            sum = Math.max(0, sum);
+        }
+        return maxProfit;
+    }
     
 }
