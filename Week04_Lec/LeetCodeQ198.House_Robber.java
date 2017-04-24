@@ -53,4 +53,26 @@ public class Solution {
         }
         return dp[nums.length - 1];
     }
+    
+    /*******************************************************************************************/
+    //优化的dp解法，O(1) space
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        if (nums.length == 2) {
+            return Math.max(nums[0], nums[1]);
+        }
+        int prevNo = 0;
+        int prevYes = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int temp = prevNo;
+            prevNo = Math.max(prevNo, prevYes);
+            prevYes = nums[i] + temp;
+        }
+        return Math.max(prevNo, prevYes);
+    }
 }
