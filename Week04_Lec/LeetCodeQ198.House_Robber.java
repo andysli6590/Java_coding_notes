@@ -70,8 +70,8 @@ public class Solution {
         int prevYes = 0;
         for (int i = 0; i < nums.length; i++) {
             int temp = prevNo;
-            prevNo = Math.max(prevNo, prevYes);
-            prevYes = nums[i] + temp;
+            prevNo = Math.max(prevNo, prevYes); //for next  i-2(prevNo), i-1(prevYes), | i,...,对于现在的i来说update prevNo，i还没有被pick
+            prevYes = nums[i] + temp; //update prevYes
         }
         return Math.max(prevNo, prevYes);
     }
