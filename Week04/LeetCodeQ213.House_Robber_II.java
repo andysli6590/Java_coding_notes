@@ -26,11 +26,11 @@ public class Solution {
         if (start == end) {
             return nums[start];
         }
-        int prevNo = 0, prevYes = 0;
+        int prevNo = 0, prevYes = 0; //prevNo, prevYes, i, i + 1;
         for (int i = start; i <= end; i++) {
-            int temp = prevNo;
-            prevNo = Math.max(prevNo, prevYes);
-            prevYes = temp + nums[i];
+            int temp = prevNo; //对于i来说的prev not include i
+            prevNo = Math.max(prevNo, prevYes); //更新对于i + 1来说的prev not include i
+            prevYes = temp + nums[i]; //对于i + 1 来说的prev include i
         }
         return Math.max(prevNo, prevYes);
     }
