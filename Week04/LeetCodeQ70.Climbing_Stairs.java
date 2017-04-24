@@ -18,4 +18,32 @@ public class Solution {
         }
         return climbStairs(n - 1) + climbStairs(n - 2);
     }
+    
+    /********************************************************************************/
+    //memorized search优化过后在leetcode是AC的
+    public int climbStairs(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+        int[] count = new int[n + 1];
+        Arrays.fill(count, Integer.MIN_VALUE);
+        count[0] = 1;
+        count[1] = 1;
+        count[2] = 2;
+        return helper(n - 1, count) + helper(n - 2, count);
+    }
+    
+    private int helper(int n, int[] count) {
+        if (count[n] != Integer.MIN_VALUE) {
+            return count[n];
+        }
+        count[n] = helper(n - 1, count) + helper(n - 2, count);
+        return count[n];
+    }
 } 
