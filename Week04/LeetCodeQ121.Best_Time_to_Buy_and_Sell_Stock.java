@@ -34,7 +34,7 @@ public class Solution {
     }
     
     /********************************************************************************/
-    //优化过的解法
+    //优化过的解法, from left to right scan
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length == 0) {
             return 0;
@@ -50,4 +50,25 @@ public class Solution {
         }
         return maxProfit;
     }
+    
+    //相似解法，from right to left scan
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int maxStockPrice = prices[prices.length - 1];
+        int maxProfit = 0;
+        for (int i = prices.length - 1; i >= 0; i--) {
+            if (prices[i] < maxStockPrice) {
+                maxProfit = Math.max(maxProfit, maxStockPrice - prices[i]);
+            } else {
+                maxStockPrice = prices[i];
+            }
+        }
+        return maxProfit;
+    }
+    
+    /**************************************************************************************/
+    
+    
 }
