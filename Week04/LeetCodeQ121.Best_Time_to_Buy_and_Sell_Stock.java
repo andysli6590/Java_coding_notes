@@ -32,4 +32,22 @@ public class Solution {
         }
         return maxProfit;
     }
+    
+    /********************************************************************************/
+    //优化过的解法
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int minStockPrice = prices[0]; //记录当前值i之前(0 - i-1)的股票的最小值
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length; i++) { //当前值是prices[i]
+            if (prices[i] > minStockPrice) { //如果当前值大于之前所记录的最小值，这个差值有可能是maxProfit的候选
+                maxProfit = Math.max(maxProfit, prices[i] - minStockPrice);    
+            } else if (prices[i] < minStockPrice) { //如果当前值小鱼之前所记录的最小值，这个最小值需要被更新
+                minStockPrice = prices[i];
+            }
+        }
+        return maxProfit;
+    }
 }
