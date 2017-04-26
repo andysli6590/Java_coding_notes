@@ -67,10 +67,10 @@ public class Solution {
             if (cols.get(rowIndex) == column) { //同列
                 return false;
             }
-//             if (row - rowIndex == column - cols.get(rowIndex)) { //x1 - x2 = y1 - y2; 45 degree line
+//             if (row - rowIndex == column - cols.get(rowIndex)) { //x1 - x2 = -(y1 - y2) 135 degree line
 //                 return false;
 //             }
-//             if (row - rowIndex == - (column - cols.get(rowIndex))) { //x1 - x2 = -(y1 - y2) 135 degree line
+//             if (row - rowIndex == - (column - cols.get(rowIndex))) { //x1 - x2 = y1 - y2; 45 degree line
 //                 return false;
 //             }
            if (Math.abs(row - rowIndex) == Math.abs(column - cols.get(rowIndex))) { //45 and 135 degree
