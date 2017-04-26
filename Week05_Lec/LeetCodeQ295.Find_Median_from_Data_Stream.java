@@ -53,6 +53,25 @@ public class MedianFinder {
     }
 }
 
+/*
+三种方法写comparator
+1. maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+2. maxHeap = new PriorityQueue<Integer>(new Comparator<Integer>(){
+            @Override
+            public int compare(Integer a, Integer b) {
+                return b - a;
+            }
+        });
+3. private class MyComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer a, Integer b) {
+            return b - a;
+            //return b.compareTo(a);
+        }
+    }
+    maxHeap = new PriorityQueue<Integer>(new MyComparator());
+*/
+
 /**
  * Your MedianFinder object will be instantiated and called as such:
  * MedianFinder obj = new MedianFinder();
