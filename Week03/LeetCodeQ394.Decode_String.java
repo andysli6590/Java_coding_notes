@@ -18,6 +18,7 @@ s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
 */
 
 public class Solution {
+    //recursion implementation
     private int index = 0; //global variable for the scanning process
     public String decodeString(String s) {
         if (s == null || s.length() == 0) return "";
@@ -29,7 +30,7 @@ public class Solution {
                     num = num * 10 + s.charAt(index++) - '0';
                 }
                 index++; //s.charAt(index) == '[';
-                String nestStr = decodeString(s);
+                String nestStr = decodeString(s); //recursion
                 while (num > 0) {
                     result.append(nestStr);
                     num--;
