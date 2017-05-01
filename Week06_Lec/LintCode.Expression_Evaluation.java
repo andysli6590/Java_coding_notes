@@ -43,6 +43,7 @@ public class Solution {
             } else if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/")) { 
                 //operators other than parentheses
                 while (!operator.isEmpty() && isLowerThan(token, operator.peekLast())) {
+                    //相同的operator precedence需要从左往右计算，也会返回true
                     num.offerLast(calculate(operator.pollLast(), num.pollLast(), num.pollLast()));
                 }
                 operator.offerLast(token); //offer current operator
