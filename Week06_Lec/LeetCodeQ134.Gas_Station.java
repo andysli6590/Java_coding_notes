@@ -18,6 +18,9 @@ return 4;
 
 
 public class Solution {
+    //用两个指针start, end从两头向中间扫，模拟一个deque双端队列, 
+    //满足条件end++， 相当于offerLast,不满足条件start--,相当于offerFirst，开始start点的更新
+    //当end 和start相遇的时候说明可以走完全程，返回即可，如果scan整个之后的sum还是小于0的，说明没有符合的出发点，返回-1
     public int canCompleteCircuit(int[] gas, int[] cost) {
         if (gas == null || gas.length == 0 || cost == null || cost.length == 0) {
             return -1;
