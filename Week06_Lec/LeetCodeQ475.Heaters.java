@@ -50,4 +50,22 @@ public class Solution {
         }
         return result;
     }
+    
+    /**************************************************************************************************************************/
+    //2分做法，对于每一个house，在有序的heaters里找到和他最近的距离的heater,然后统计得到答案
+    public int findRadius(int[] houses, int[] heaters) {
+        Arrays.sort(heaters);
+        int result = Integer.MIN_VALUE;
+        for (int house : houses) {
+            int index = Arrays.binarySearch(heaters, house);
+            if (index < 0) {
+                index = -(index + 1);
+            }
+            int distance1 = index - 1 >= 0 ? house - heaters[index - 1] : Integer.MAX_VALUE;
+            int distance2 = index < heaters.length ? heaters[index] - house : Integer.MAX_VALUE;
+            result = Math.max(result, Math.min(distance1, distance2));
+        }
+        return result;
+    }
+    
 }
