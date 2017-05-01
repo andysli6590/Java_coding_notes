@@ -27,7 +27,7 @@ then all the houses can be warmed.
 */
 
 public class Solution {
-    //two linear-structures, the path from top left to bottom right
+    //two linear-structures, the path from top left to bottom right, O(m + n)
     public int findRadius(int[] houses, int[] heaters) {
         if (houses == null || houses.length == 0 || heaters == null || heaters.length == 0) {
             return 0;
