@@ -49,4 +49,23 @@ public class Solution {
         }
         return result;
     }
+    
+    /************************************************************************************************************/
+    //implement with java 8 new feature, map.getOrDefault(key, defaultValue)
+    public int leastBricks(List<List<Integer>> wall) {
+        if (wall == null || wall.size() == 0 || wall.get(0).size() == 0) {
+            return 0;
+        }
+        int count = 0; //用于统计最大的相同的sum end的位置有多少块
+        Map<Integer, Integer> map = new HashMap<>();
+        for (List<Integer> row : wall) {
+            int sum = 0;
+            for (int i = 0; i < row.size() - 1; i++) { //*****计算前n项和不能到最后一块
+                sum += row.get(i);
+                map.put(sum, map.getOrDefault(sum, 0) + 1);
+                count = Math.max(count, map.get(sum));
+            }
+        }
+        return wall.size() - count; //墙的高度减去之前统计的最大的相同砖块的end的位置，就是最少cross砖块的数量
+    }
 }
