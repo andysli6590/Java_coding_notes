@@ -26,6 +26,7 @@ For k = 3, you should return: 3->2->1->4->5
  * }
  */
 public class Solution {
+    //iteration implementation
     public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null || head.next == null || k <= 1) {
             return head;
@@ -60,5 +61,32 @@ public class Solution {
         }
         tail.next = nextHead;
         return tail;
+    }
+    
+    /************************************************************************************/
+    //recursive implementation
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null || head.next == null || k <= 1) return head;
+        ListNode last = head;
+        for (int i = 0; i < k - 1; i++) {
+            last = last.next;
+            if (last == null) return head;
+        }
+        
+        ListNode nextHead = last.next;
+        last.next = null; //break down
+        reverseList(head); //reverse the part with length k
+        head.next = reverseKGroup(nextHead, k);
+        return last;
+    }
+    
+    private void reverseList(ListNode head) {
+        ListNode prev = null;
+        while (head != null) {
+            ListNode nextNode = head.next;
+            head.next = prev;
+            prev = head;
+            head = nextNode;
+        }
     }
 }
