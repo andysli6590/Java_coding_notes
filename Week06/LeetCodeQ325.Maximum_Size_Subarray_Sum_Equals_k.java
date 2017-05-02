@@ -32,7 +32,7 @@ public class Solution {
             } else if (map.containsKey(sum - k)) { // sum - k, ..., sum,...说明之前的subarray之和等于k
                 max = Math.max(max, i - map.get(sum - k));
             }
-            if (!map.containsKey(sum)) { //如果没有出现，添加，如果之前出现过就保留这样可以保证是最长的subarray
+            if (!map.containsKey(sum)) { //如果没有出现在map中，添加，如果之前出现过就保留这样可以保证是最长的subarray
                 map.put(sum, i);
             }
         }
