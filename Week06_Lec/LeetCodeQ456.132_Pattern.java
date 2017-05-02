@@ -43,7 +43,8 @@ public class Solution {
         }
         Deque<Pair> stack = new ArrayDeque<>();
         for (int cur : nums) {
-            if (stack.isEmpty() || cur < stack.peekLast().min) {
+            if (stack.isEmpty() || cur < stack.peekLast().min) { 
+                //if we find smaller one, need to create new Pair to record the order!!
                 stack.offerLast(new Pair(cur, cur));
             } else if (cur > stack.peekLast().min) {
                 Pair last = stack.pollLast();
