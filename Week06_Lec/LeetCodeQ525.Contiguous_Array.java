@@ -36,6 +36,12 @@ public class Solution {
             } else {
                 max = Math.max(max, i - firstIdx);
             }
+            
+//             if (idxMap.containsKey(sum)) {
+//                 max = Math.max(max, i - idxMap.get(sum));
+//             } else {
+//                 idxMap.put(sum, i);
+//             }
         }
         
         //set the signature input array back
