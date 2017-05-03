@@ -61,6 +61,8 @@ public class Solution {
                 }
             }
             if (i == dictWord.length() && dictWord.length() >= longest.length()) {
+                //if the length is same, we need to return the one with the smallest lexicographical order
+                //in this two cases to update the candidate result
                 if (dictWord.length() > longest.length() || dictWord.compareTo(longest) < 0) {
                     longest = dictWord;
                 }
