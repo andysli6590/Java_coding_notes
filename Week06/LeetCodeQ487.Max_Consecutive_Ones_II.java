@@ -38,4 +38,22 @@ public class Solution {
         }
         return max;
     }
+    /*******************************************************************************************************/
+    //follow up
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int max = 0, k = 1; //flip at most k zero
+        Deque<Integer> zeroIndex = new LinkedList<>();
+        for (int l = 0, h = 0; h < nums.length; h++) {
+            if (nums[h] == 0) {
+                zeroIndex.offerLast(h);
+            }
+            if (zeroIndex.size() > k) {
+                l = zeroIndex.pollFirst() + 1; //can not count current  nums[l] = 0
+            }
+            max = Math.max(max, h - l + 1);
+        }
+        return max;
+    }
+    
+    
 }
