@@ -17,8 +17,8 @@ public class Solution {
         int n = nums.length;
         for (int i = 0; i < n; i++) {
             //Put each number in its right place. E.g. When we find 5, then swap it with nums[4].
-            while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
-                swap(nums, i, nums[i] - 1);
+            while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) { //nums[i] - 1 != i also works
+                swap(nums, i, nums[i] - 1); //swap within the array, so O(1) space
             }
         }
         //At last, the first place where its number is not right, return the place + 1.
