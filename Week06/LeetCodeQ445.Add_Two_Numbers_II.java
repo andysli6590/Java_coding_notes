@@ -85,5 +85,36 @@ public class Solution {
     }
     
     /***************************************************************/
-    //optimized solution using two stacks
+    //optimized solution
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1 == null && l2 == null) {
+            return null;
+        } else if (l1 != null && l2 == null) {
+            return l1;
+        } else if (l1 == null && l2 != null) {
+            return l2;
+        }
+        Deque<Integer> stack1 = new ArrayDeque<>();
+        Deque<Integer> stack2 = new ArrayDeque<>();
+        while (l1 != null) {
+            stack1.offerLast(l1.val);
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            stack2.offerLast(l2.val);
+            l2 = l2.next;
+        }
+        int sum = 0;
+        ListNode list = new ListNode(0);
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
+            if (!stack1.isEmpty()) sum += stack1.pollLast();
+            if (!stack2.isEmpty()) sum += stack2.pollLast();
+            list.val = sum % 10; //
+            ListNode head = new ListNode(sum / 10); //need to initialize the value with the carry for example: 5, 5
+            head.next = list;
+            list = head;
+            sum /= 10; //carry
+        }
+        return list.val == 0 ? list.next : list;
+    }   
 }
