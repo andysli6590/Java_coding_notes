@@ -40,6 +40,12 @@ public class Solution {
     }
     /*******************************************************************************************************/
     //follow up
+    /*we need to store up to k indexes of zero within the window [l, h] 
+    so that we know where to move l next when the window contains more than k zero. If the input stream is infinite, 
+    then the output could be extremely large because there could be super long consecutive ones. 
+    In that case we can use BigInteger for all indexes. For simplicity, here we will use int
+    */
+    //Time: O(n) Space: O(k)
     public int findMaxConsecutiveOnes(int[] nums) {
         int max = 0, k = 1; //flip at most k zero
         Deque<Integer> zeroIndex = new LinkedList<>();
@@ -55,5 +61,18 @@ public class Solution {
         return max;
     }
     
-    
+    /*********************************************************************************************************/
+    //in this case, k = 1, flip at most 1 zero
+    //the above solution could be simplfied:
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int max = 0, q = -1; // flip at most 1 zero, store 0 index
+        for (int l = 0, h = 0; h < nums.length; h++) {
+            if (nums[h] == 0) {
+                l = q + 1; //current 0 index + 1
+                q = h; //store the next 0 index
+            }
+            max = Math.max(max, h - l + 1);
+        }
+        return max;
+    }
 }
