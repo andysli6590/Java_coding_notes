@@ -38,8 +38,8 @@ public class Solution {
         if (m == 1) {
             return (int)sum;
         }
-        
-        long start = Math.max(sum / m, max);
+        //二分的两端
+        long start = Math.max(sum / m, max); 
         long end = sum - m + 1;
         while (start < end - 1) {
             long mid = (start + end) / 2;
@@ -52,6 +52,7 @@ public class Solution {
         return isValid(start, nums, m) ? (int)start : (int)end;
     }
     
+    //to check how many subarrays/pieces it can divided
     private boolean isValid(long target, int[] nums, int m) {
         int count = 1;
         long total = 0;
