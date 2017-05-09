@@ -70,4 +70,26 @@ public class Solution {
                 || binarySearch(matrix, target, midX + 1, startY, endX, midY);
         }
     }
+  
+    /***************************************************************************************************************/
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+        int row = matrix.length;
+        int col = matrix[0].length;
+        //start from the top-right point
+        int curRow = 0;
+        int curCol = col - 1;
+        while (curRow < row && curCol >= 0) {
+            if (matrix[curRow][curCol] > target) {
+                curCol--;
+            } else if (matrix[curRow][curCol] < target) {
+                curRow++;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
 }
