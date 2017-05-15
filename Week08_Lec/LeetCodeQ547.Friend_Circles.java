@@ -91,9 +91,13 @@ public class Solution {
     }
     
     private int find(int[] root, int current) {
-        while (current != root[current]) {
+        while (current != root[current]) { //compressed union find
             root[current] = root[root[current]];
             current = root[current];
+            //equavalent to 
+            //int father = root[current];
+            //root[current] = root[father];
+            //current = father;
         }
         return current;
     }
