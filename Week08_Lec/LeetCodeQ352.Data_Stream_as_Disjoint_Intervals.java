@@ -25,7 +25,7 @@ What if there are lots of merges and the number of disjoint intervals are small 
  * }
  */
 public class SummaryRanges {
-    //implementation using TreeMap
+    //implementation using TreeMap, time complexity: O(logN)
     private TreeMap<Integer, Interval> tree; 
     //key is the interval start, value is the interval itself
     /** Initialize your data structure here. */
