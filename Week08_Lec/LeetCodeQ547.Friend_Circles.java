@@ -55,4 +55,46 @@ public class Solution {
             }
         }
     }
+ 
+    /***************************************************************************************************************/
+    //union find solution
+    public int findCircleNum(int[][] M) {
+        if (M == null || M.length == 0 || M[0].length == 0) {
+            return 0;
+        }
+        
+        int count = 0;
+        int[] root = new int[M.length];
+        for (int i = 0; i < M.length; i++) {
+            root[i] = i;
+        }
+        for (int i = 0; i < M.length; i++) {
+            for (int j = i + 1; j < M.length; j++) {
+                if (M[i][j] == 1) {
+                    union(root, i, j);
+                }
+            }
+        }
+        for (int i = 0; i < M.length; i++) {
+            if (root[i] == i) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    private void union(int[] root, int nodeOne, int nodeTwo) {
+        int rootOne = find(root, nodeOne);
+        int rootTwo = find(root, nodeTwo);
+        root[rootTwo] = rootOne;
+        return;
+    }
+    
+    private int find(int[] root, int current) {
+        while (current != root[current]) {
+            root[current] = root[root[current]];
+            current = root[current];
+        }
+        return current;
+    }
 }
