@@ -6,11 +6,12 @@ You can always assume that the given expression is valid and only consists of di
 
 Note:
 
-The length of the given string is ≤ 10000.
-Each number will contain only one digit.
-The conditional expressions group right-to-left (as usual in most languages).
-The condition will always be either T or F. That is, the condition will never be a digit.
-The result of the expression will always evaluate to either a digit 0-9, T or F.
+1. The length of the given string is ≤ 10000.
+2. Each number will contain only one digit.
+3. The conditional expressions group right-to-left (as usual in most languages).
+4. The condition will always be either T or F. That is, the condition will never be a digit.
+5. The result of the expression will always evaluate to either a digit 0-9, T or F.
+
 Example 1:
 
 Input: "T?2:3"
@@ -68,5 +69,29 @@ public class Solution {
             }
         }
         return String.valueOf(stack.peekLast());
+    }
+  
+    /*********************************************************************************************************************/
+    //recursion
+    private int index;
+    public String parseTernary(String expression) {
+        index = 0;
+        if (expression == null || expression.length() == 0) {
+            return "";
+        }
+        return Character.toString(helper(expression));
+        //return String.valueOf(helper(expression));
+    }
+    
+    private char helper(String s) {
+        char ch = s.charAt(index);
+        if (index + 1 == s.length() || s.charAt(index + 1) == ':') {
+            index += 2; //pass ':'
+            return ch;
+        }
+        index += 2; //pass '?'
+        char first = helper(s);
+        char second = helper(s);
+        return ch == 'T' ? first : second;
     }
 }
