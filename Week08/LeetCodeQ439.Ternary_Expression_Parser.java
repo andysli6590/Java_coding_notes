@@ -94,4 +94,23 @@ public class Solution {
         char second = helper(s);
         return ch == 'T' ? first : second;
     }
+  
+    /*********************************************************************************************************************/
+    //类似于bfs的解法，相当于从右往左遍历
+    public String parseTernary(String expression) {
+        if (expression == null || expression.length() == 0) {
+            return "";
+        }
+        while (expression.length() != 1) {
+            int i = expression.lastIndexOf('?');
+            char temp;
+            if (expression.charAt(i - 1) == 'T') {
+                temp = expression.charAt(i + 1);
+            } else {
+                temp = expression.charAt(i + 3);
+            }
+            expression = expression.substring(0, i - 1) + temp + expression.substring(i + 4);
+        }
+        return expression;
+    }
 }
