@@ -42,6 +42,7 @@ public class Solution {
  
     /******************************************************************************************/
     //optimized solution, only 1 scan from left to right
+    //one pass: 3 basic branches
     public int candy(int[] ratings) {
         if (ratings == null || ratings.length == 0) {
             return 0;
@@ -71,6 +72,7 @@ public class Solution {
                 sum += prev;
             }
         }
+        //check last descending sequence
         if (down > 0) {
             sum += down * (down + 1) / 2;
             if (down >= prev) {
