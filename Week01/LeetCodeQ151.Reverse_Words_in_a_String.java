@@ -10,6 +10,45 @@ return "blue is sky the".
 */
 
 public class Solution {
+    //kinda of brutal force
+    public String reverseWords(String s) {
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+        char[] chars = s.toCharArray();
+        StringBuilder result = new StringBuilder();
+        reverse(chars, 0, chars.length - 1);
+        int left = -1, right = -1;
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] != ' ') {
+                left = (i == 0 || chars[i - 1] == ' ') ? i : left;
+                right = (i == chars.length - 1 || chars[i + 1] == ' ')? i : right;
+            }
+            if (left != -1 && right != -1) {
+                reverse(chars, left, right);
+                if (result.length() != 0) {
+                    result.append(' ');
+                }
+                result.append(chars, left, right - left + 1);
+                left = -1;
+                right = -1;
+            }
+        }
+        return result.toString();
+    }
+    
+    private void reverse(char[] chars, int i, int j) {
+        while (i <= j) {
+            char temp = chars[i];
+            chars[i] = chars[j];
+            chars[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    
+    /******************************************************************************************/
+    //optimized solution
     public String reverseWords(String s) {
         if (s == null || s.length() == 0) {
             return s;
