@@ -11,6 +11,7 @@ What is the minimum candies you must give?
 */
 
 public class Solution {
+    //time: O(n) -> two pass, space: O(n);
     public int candy(int[] ratings) {
         if (ratings == null || ratings.length == 0) {
             return 0;
