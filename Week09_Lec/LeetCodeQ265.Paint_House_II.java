@@ -83,6 +83,7 @@ public class Solution {
                     curSec = val;
                 }
             }
+            //update from cur to last
             lastMin = curMin;
             lastSec = curSec;
             lastIndex = curIndex;
