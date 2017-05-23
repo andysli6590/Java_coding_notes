@@ -19,6 +19,7 @@ Return 167
 */
 
 public class Solution {
+    //memorized search, using dp as cache
     public int maxCoins(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -33,18 +34,18 @@ public class Solution {
         input[len + 1] = 1;
         boolean[][] visited = new boolean[len + 2][len + 2];
         int[][] dp = new int[len + 2][len + 2];
-        return dfsHelper(input, dp, visited, 1, len);
+        return searchHelper(input, dp, visited, 1, len);
     }
     
-    private int dfsHelper(int[] input, int[][] dp, boolean[][] visited, int left, int right) {
+    private int searchHelper(int[] input, int[][] dp, boolean[][] visited, int left, int right) {
         if (visited[left][right] == true) {
             return dp[left][right];
         }
         int result = 0;
         for (int i = left; i <= right; i++) {
             int midValue = input[left - 1] * input[i] * input[right + 1];
-            int leftValue = dfsHelper(input, dp, visited, left, i - 1);
-            int rightValue = dfsHelper(input, dp, visited, i + 1, right);
+            int leftValue = searchHelper(input, dp, visited, left, i - 1);
+            int rightValue = searchHelper(input, dp, visited, i + 1, right);
             result = Math.max(result, leftValue + midValue + rightValue);
         }
         visited[left][right] = true;
