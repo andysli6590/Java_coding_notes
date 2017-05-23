@@ -59,4 +59,31 @@ public class Solution {
         dp[left][right] = result;
         return result;
     }
+    
+    /********************************************************************************************************/
+    //dp, iteration fill the dp table
+    public int maxCoins(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        //composite input
+        int[] input = new int[n + 2];
+        for (int i = 1; i <= n; i++) {
+            input[i] = nums[i - 1];
+        }
+        input[0] = 1;
+        input[n + 1] = 1;
+        int[][] dp = new int[n + 2][n + 2];
+        for (int len = 1; len <= n; len++) {
+            //left moves between[1, n - len + 1]
+            for (int left = 1; left <= n - len + 1; left++) {
+                int right = left + len - 1; //right - left + 1 = len
+                for (int k = left; k <= right; k++) {
+                    dp[left][right] = Math.max(dp[left][right], input[left - 1] * input[k] * input[right + 1] + dp[left][k - 1] + dp[k + 1][right]);
+                }
+            }
+        }
+        return dp[1][n];
+    }
 }
