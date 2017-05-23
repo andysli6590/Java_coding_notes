@@ -80,7 +80,8 @@ public class Solution {
             for (int left = 1; left <= n - len + 1; left++) {
                 int right = left + len - 1; //right - left + 1 = len
                 for (int k = left; k <= right; k++) {
-                    dp[left][right] = Math.max(dp[left][right], input[left - 1] * input[k] * input[right + 1] + dp[left][k - 1] + dp[k + 1][right]);
+                    dp[left][right] = Math.max(dp[left][right], 
+                                     input[left - 1] * input[k] * input[right + 1] + dp[left][k - 1] + dp[k + 1][right]);
                 }
             }
         }
