@@ -42,6 +42,9 @@ public class Solution {
     }
     
     private int searchHelper(int[] input, int[][] dp, boolean[][] visited, int left, int right) {
+        if (left > right) {
+            return 0;
+        }
         if (visited[left][right] == true) {
             return dp[left][right];
         }
