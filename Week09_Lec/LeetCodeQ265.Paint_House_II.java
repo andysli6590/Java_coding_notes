@@ -53,4 +53,40 @@ public class Solution {
         }
         return min == Integer.MAX_VALUE ? 0 : min;
     }
+    
+    /********************************************************************************************************/
+    //optimized solution, with O(1) space complexity
+    public int minCostII(int[][] costs) {
+        if (costs == null || costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
+        int lastMin = 0;
+        int lastSec = 0;
+        int lastIndex = -1;
+        
+        for (int[] cost : costs) {
+            int curMin = Integer.MAX_VALUE;
+            int curSec = Integer.MAX_VALUE;
+            int curIndex = -1;
+            
+            for (int j = 0; j < cost.length; j++) {
+                //the current level min can be only derived from the min and sec min of last level
+                //if the current level index is not equal to last level index, pick the last level min value
+                //if the current level index is equal to last level index, pick the second min value of last level
+                int val = cost[j] + (j == lastIndex ? lastSec : lastMin);
+                if (val < curMin) {
+                    curSec = curMin;
+                    curMin = val;
+                    curIndex = j;
+                } else if (val < curSec) {
+                    //update curSec if secCur < val <= curMin
+                    curSec = val;
+                }
+            }
+            lastMin = curMin;
+            lastSec = curSec;
+            lastIndex = curIndex;
+        }
+        return lastMin;
+    }
 }
