@@ -20,6 +20,7 @@ Return 167
 
 public class Solution {
     //memorized search, using dp as cache
+    //time: O(n^3), space: O(n^2);
     public int maxCoins(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
