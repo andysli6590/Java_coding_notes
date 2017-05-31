@@ -34,6 +34,8 @@ public class Solution {
         }
         return Math.max(prevNo, prevYes);
     }
+    
+    
     /*************************************************************************************************/
     //优化简练的版本
     public int rob(int[] nums) {
