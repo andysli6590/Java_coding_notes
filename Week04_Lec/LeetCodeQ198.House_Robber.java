@@ -75,4 +75,23 @@ public class Solution {
         }
         return Math.max(prevNo, prevYes);
     }
+    
+    /******************************************************************************************************************************/
+    //最简练优化的解法
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        int prev = 0;
+        int cur = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            int next = Math.max(cur, prev + nums[i]);
+            prev = cur;
+            cur = next;
+        }
+        return cur;
+    }
 }
