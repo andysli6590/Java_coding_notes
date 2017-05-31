@@ -34,4 +34,27 @@ public class Solution {
         }
         return Math.max(prevNo, prevYes);
     }
+    /*************************************************************************************************/
+    //优化简练的版本
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        return Math.max(subRob(nums, 0, nums.length - 2), subRob(nums, 1, nums.length - 1));
+    }
+    
+    private int subRob(int[] nums, int start, int end) {
+        int prev = 0;
+        int cur = nums[start];
+        
+        for (int i = start + 1; i <= end; i++) {
+            int next = Math.max(cur, prev + nums[i]);
+            prev = cur;
+            cur = next;
+        }
+        return cur;
+    }
 }
