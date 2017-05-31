@@ -1,5 +1,3 @@
-package com.SnakGame.Week01;
-
 /**
  * Created by Yiteng on 3/28/2017.
  */
