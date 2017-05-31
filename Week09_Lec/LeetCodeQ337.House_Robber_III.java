@@ -34,6 +34,15 @@ Maximum amount of money the thief can rob = 4 + 5 = 9.
  */
  
 //house robber follow up on the binary tree
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 public class Solution {
     private class Sum {
         int inRoot;
