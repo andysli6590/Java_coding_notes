@@ -1,4 +1,3 @@
-package com.SnakGame.Week01;
 import java.util.*;
 /**
  * Created by Yiteng on 3/28/2017.
