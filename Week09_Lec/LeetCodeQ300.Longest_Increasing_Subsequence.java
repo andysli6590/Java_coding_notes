@@ -58,6 +58,7 @@ public class Solution {
         for (int i = 0; i < nums.length; i++) {
             int start = 0;
             int end = len;
+            //binary search find the insert position
             while (start + 1 < end) {
                 int mid = (start + end) >>> 1;
                 if (result[mid] < nums[i]) {
