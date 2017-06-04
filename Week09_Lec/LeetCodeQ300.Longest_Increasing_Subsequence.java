@@ -42,4 +42,44 @@ public class Solution {
         }
         return longest;
     }
+    
+    /*******************************************************************************************************/
+    //optimization: DP + Binary Search
+    public int lengthOfLIS(int[] nums) {
+        if (nums == null) {
+            return 0;
+        }
+        if (nums.length <= 1) {
+            return nums.length;
+        }
+        int[] result = new int[nums.length];
+        int len = 0;
+        
+        for (int i = 0; i < nums.length; i++) {
+            int start = 0;
+            int end = len;
+            while (start + 1 < end) {
+                int mid = (start + end) >>> 1;
+                if (result[mid] < nums[i]) {
+                    start = mid;
+                } else {
+                    end = mid;
+                }
+            }
+            
+            int insertAt = 0;
+            if (result[start] >= nums[i]) {
+                result[start] = nums[i];
+                insertAt = start;
+            } else {
+                result[end] = nums[i];
+                insertAt = end;
+            }
+            
+            if (insertAt == len) {
+                len++;
+            }
+        }
+        return len;
+    }
 }
