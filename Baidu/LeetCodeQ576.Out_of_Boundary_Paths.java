@@ -23,4 +23,33 @@ public class Solution {
         return findPaths(m, n, N - 1, i - 1, j) + findPaths(m, n, N - 1, i + 1, j) 
              + findPaths(m, n, N - 1, i, j - 1) + findPaths(m, n, N - 1, i, j + 1);
     }
+    
+    /******************************************************************************************/
+    //brutal force, DFS implementation, TLE
+    private int count;
+    public int findPaths(int m, int n, int N, int i, int j) {
+        if (N <= 0 || m <= 0 || n <= 0) {
+            return 0;
+        }
+        count = 0;
+        helper(m, n, N, i, j);
+        return count;
+    }
+    private int[] dx = {1, -1, 0, 0};
+    private int[] dy = {0, 0, 1, -1};
+    private void helper(int m, int n, int N, int i, int j) {
+        if (i < 0 || i >= m || j < 0 || j >= n) {
+            count++;
+            return;
+        }
+        if (N <= 0) {
+            return;
+        } 
+        
+        for (int k = 0; k < 4; k++) {
+            int x = i + dx[k];
+            int y = j + dy[k];
+            helper(m, n, N - 1, x, y);
+        }
+    }
 }
