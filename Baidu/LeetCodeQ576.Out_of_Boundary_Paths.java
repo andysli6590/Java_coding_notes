@@ -79,8 +79,45 @@ public class Solution {
         if (cache[i][j][N] >= 0) {
             return cache[i][j][N];
         }
-        cache[i][j][N] = ((helper(m, n, N - 1, i + 1, j, cache) + helper(m, n, N - 1, i - 1, j, cache)) % mode + (helper(m, n, N - 1, i, j + 1, cache) + helper(m, n, N - 1, i, j - 1, cache)) % mode) % mode;
+        cache[i][j][N] = ((helper(m, n, N - 1, i + 1, j, cache) + helper(m, n, N - 1, i - 1, j, cache)) % mode 
+                          + (helper(m, n, N - 1, i, j + 1, cache) + helper(m, n, N - 1, i, j - 1, cache)) % mode) % mode;
         
         return cache[i][j][N];
+    }
+    
+    
+    /************************************************************************************************************************/
+    //dp, time complexity: O(m * n * N), space complexity: O(m * n)
+    private final int mode = 1000000007;
+    public int findPaths(int m, int n, int N, int x, int y) {
+        if (N <= 0 || m <= 0 || n <= 0) {
+            return 0;
+        }
+        int[][] dp = new int[m][n];
+        dp[x][y] = 1;
+        int count = 0;
+        for (int moves = 1; moves <= N; moves++) {
+            int[][] temp = new int[m][n];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (i == 0) {
+                        count = (count + dp[i][j]) % mode;
+                    }
+                    if (i == m - 1) {
+                        count = (count + dp[i][j]) % mode;
+                    }
+                    if (j == 0) {
+                        count = (count + dp[i][j]) % mode;
+                    }
+                    if (j == n - 1) {
+                        count = (count + dp[i][j]) % mode;
+                    }
+                    
+                    temp[i][j] = (((i > 0 ? dp[i - 1][j] : 0) + (i < m - 1 ? dp[i + 1][j] : 0)) % mode + ((j > 0 ? dp[i][j - 1] : 0) + (j < n - 1 ? dp[i][j + 1] : 0)) % mode) % mode;
+                }
+            }
+            dp = temp;
+        }
+        return count;
     }
 }
