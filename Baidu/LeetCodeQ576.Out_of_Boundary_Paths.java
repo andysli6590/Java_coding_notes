@@ -54,7 +54,7 @@ public class Solution {
     }
     
     /**********************************************************************************************/
-    //memorized search
+    //memorized search, time complexity: O(m * n * N), space complexity: O(m * n * N)
     private final int mode = 1000000007;
     public int findPaths(int m, int n, int N, int i, int j) {
         if (N <= 0 || m <= 0 || n <= 0) {
