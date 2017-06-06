@@ -12,7 +12,7 @@ Note:
 */
 
 public class Solution {
-    //brutal force, TLE, time complexity: O(n^4), space complexity: O(n)
+    //brutal force, TLE, time complexity: O(4^n), space complexity: O(n)
     public int findPaths(int m, int n, int N, int i, int j) {
         if (i >= m || i < 0 || j >= n || j < 0) {
             return 1;
@@ -25,7 +25,7 @@ public class Solution {
     }
     
     /******************************************************************************************/
-    //brutal force, DFS implementation, TLE, time complexity: O(n^4), space complexity: O(n)
+    //brutal force, DFS implementation, TLE, time complexity: O(4^n), space complexity: O(n)
     private int count;
     public int findPaths(int m, int n, int N, int i, int j) {
         if (N <= 0 || m <= 0 || n <= 0) {
