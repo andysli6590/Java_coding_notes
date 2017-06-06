@@ -52,4 +52,35 @@ public class Solution {
             helper(m, n, N - 1, x, y);
         }
     }
+    
+    /**********************************************************************************************/
+    //memorized search
+    private final int mode = 1000000007;
+    public int findPaths(int m, int n, int N, int i, int j) {
+        if (N <= 0 || m <= 0 || n <= 0) {
+            return 0;
+        }
+        int[][][] cache = new int[m][n][N + 1];
+        for (int[][] elem : cache) {
+            for (int[] e : elem) {
+                Arrays.fill(e, -1);
+            }
+        }
+        return helper(m, n, N, i, j, cache);
+    }
+    
+    private int helper(int m, int n, int N, int i, int j, int[][][] cache) {
+        if (i < 0 || i >= m || j < 0 || j >= n) {
+            return 1;
+        }
+        if (N <= 0) {
+            return 0;
+        } 
+        if (cache[i][j][N] >= 0) {
+            return cache[i][j][N];
+        }
+        cache[i][j][N] = ((helper(m, n, N - 1, i + 1, j, cache) + helper(m, n, N - 1, i - 1, j, cache)) % mode + (helper(m, n, N - 1, i, j + 1, cache) + helper(m, n, N - 1, i, j - 1, cache)) % mode) % mode;
+        
+        return cache[i][j][N];
+    }
 }
