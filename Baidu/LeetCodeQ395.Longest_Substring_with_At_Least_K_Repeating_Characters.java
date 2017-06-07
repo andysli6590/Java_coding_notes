@@ -45,6 +45,7 @@ public class Solution {
         }
         
         for (int i = 0; i < 26; i++) {
+            //scan and find the characters that has the frequence less than k as the cut line
             if (count[i] < k && count[i] > 0) {
                 //the frequence is less than k or the letter is not existing in the string
                 for (int j = start; j < end; j++) {
