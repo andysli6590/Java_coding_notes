@@ -59,4 +59,58 @@ public class Solution {
         }
         return end - start;
     }
+    
+    /*************************************************************************************************************************/
+    //optimized solution using two pointers scan, 
+    //time complexity  O(M*N), M is the unique characters of the input, in this particular case M is bounded to 26.
+    //N is the input string length
+    public int longestSubstring(String s, int k) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        char[] chars = s.toCharArray();
+        int[] count = new int[26];
+        int h, i, j, index;
+        int max = 0;
+        int unique, noLessThanK;
+        
+        for (h = 1; h <= 26; h++) {
+            //how many letters we are targeting
+            //reset two pointers and registers
+            Arrays.fill(count, 0);
+            i = 0;
+            j = 0;
+            unique = 0;
+            noLessThanK = 0;
+            while (j < chars.length) {
+                if (unique <= h) {
+                    index = chars[j] - 'a';
+                    if (count[index] == 0) {
+                        unique++;
+                    }
+                    count[index]++;
+                    if (count[index] == k) {
+                        noLessThanK++;
+                    }
+                    j++;
+                } else {
+                    index = chars[i] - 'a';
+                    if (count[index] == k) {
+                        noLessThanK--;
+                    }
+                    count[index]--;
+                    if (count[index] == 0) {
+                        unique--;
+                    }
+                    i++;
+                }
+                //only when the numbers of unique letters equals to the total letters we scanned 
+                //and equals the numbers of frequence that no less than K
+                if (unique == h && unique == noLessThanK) {
+                    max = Math.max(max, j - i);
+                }
+            }
+        }
+        return max;
+    }
 }
