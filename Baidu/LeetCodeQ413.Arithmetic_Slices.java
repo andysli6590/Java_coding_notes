@@ -46,4 +46,23 @@ public class Solution {
         }
         return result;
     }
+    
+    /**************************************************************************************/
+    //另外一种写法
+    public int numberOfArithmeticSlices(int[] A) {
+        if (A == null || A.length < 3) {
+            return 0;
+        }
+        int cur = 0;
+        int result = 0;
+        for (int i = 1; i < A.length - 1; i++) {
+            if (A[i] - A[i - 1] == A[i + 1] - A[i]) {
+                cur++;
+                result += cur;
+            } else {
+                cur = 0;
+            }
+        }
+        return result;
+    }
 }
