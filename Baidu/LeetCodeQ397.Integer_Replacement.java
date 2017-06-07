@@ -31,7 +31,8 @@ or
 */
 
 public class Solution {
-    
+    // 1. 3 is the special case need to discuss separate !!!
+    // 2. if bitCount(n + 1) > bitCount(n - 1) n--; or (n / 2) is even number!!!!!
     public int integerReplacement(int n) {
         if (n <= 1) {
             return 0;
