@@ -49,7 +49,7 @@ public class Solution {
             if (count[i] < k && count[i] > 0) {
                 //the frequence is less than k or the letter is not existing in the string
                 for (int j = start; j < end; j++) {
-                    if (chars[j] == i + 'a') {
+                    if (chars[j] == i + 'a') { //find the character letter that frequence is less than k and split two parts
                         int left = helper(chars, start, j, k);
                         int right = helper(chars, j + 1, end, k);
                         return Math.max(left, right);
