@@ -38,7 +38,7 @@ public class Solution {
         if (end - start < k) { //substring [start, end)
             return 0;
         }
-        int[] count = new int[26];
+        int[] count = new int[26]; //count the frequence in the current substring domain
         for (int i = start; i < end; i++) {
             int index = chars[i] - 'a';
             count[index]++;
