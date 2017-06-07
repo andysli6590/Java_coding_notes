@@ -70,11 +70,14 @@ public class Solution {
         }
         char[] chars = s.toCharArray();
         int[] count = new int[26];
-        int h, i, j, index;
+        //two points
+        int i, j;
+        int nums;
+        int unique = 0;
+        int noLessThanK = 0;
         int max = 0;
-        int unique, noLessThanK;
-        
-        for (h = 1; h <= 26; h++) {
+        int index;
+        for (nums = 1; nums <= 26; nums++) {
             //how many letters we are targeting
             //reset two pointers and registers
             Arrays.fill(count, 0);
@@ -83,7 +86,7 @@ public class Solution {
             unique = 0;
             noLessThanK = 0;
             while (j < chars.length) {
-                if (unique <= h) {
+                if (unique <= nums) {
                     index = chars[j] - 'a';
                     if (count[index] == 0) {
                         unique++;
@@ -106,7 +109,7 @@ public class Solution {
                 }
                 //only when the numbers of unique letters equals to the total letters we scanned 
                 //and equals the numbers of frequence that no less than K
-                if (unique == h && unique == noLessThanK) {
+                if (unique == nums && unique == noLessThanK) {
                     max = Math.max(max, j - i);
                 }
             }
