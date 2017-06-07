@@ -31,6 +31,7 @@ or
 */
 
 public class Solution {
+    
     public int integerReplacement(int n) {
         if (n <= 1) {
             return 0;
@@ -40,7 +41,50 @@ public class Solution {
             if ((n & 1) == 0) {
                 //even number
                 n >>>= 1; // n /= 2;
-            } else if (n == 3 || Integer.bitCount(n + 1) > Integer.bitCount(n - 1)) {
+            } else if (n == 3 || ((n / 2) & 1) == 0) {
+                //for odd number
+                n--;
+            } else {
+                n++;
+            }
+            result++;
+        }
+        return result;
+    }
+    
+    /******************************************************************************/
+    
+    public int integerReplacement(int n) {
+        if (n <= 1) {
+            return 0;
+        }
+        int result = 0;
+        while (n != 1) {
+            if ((n & 1) == 0) {
+                //even number
+                n >>>= 1; // n /= 2;
+            } else if (n == 3 || Integer.bitCount(n + 1) > Integer.bitCount(n - 1)) { 
+                //for odd number
+                n--;
+            } else {
+                n++;
+            }
+            result++;
+        }
+        return result;
+    }
+    
+    /*************************************************************************************/
+    public int integerReplacement(int n) {
+        if (n <= 1) {
+            return 0;
+        }
+        int result = 0;
+        while (n != 1) {
+            if ((n & 1) == 0) {
+                //even number
+                n >>>= 1; // n /= 2;
+            } else if (n == 3 || ((n >>> 1) & 1) == 0) {
                 //for odd number
                 n--;
             } else {
