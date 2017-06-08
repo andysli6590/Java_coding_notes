@@ -96,4 +96,25 @@ public class Solution {
         
         return new ResultType(singlePath, maxPath);
     }
+       
+       
+    /******************************************************************************************************************/
+    //without ResultType solution   
+    private int maxPathSum;
+    public int maxPathSum(TreeNode root) {
+        maxPathSum = Integer.MIN_VALUE;
+        helper(root);
+        return maxPathSum;
+    }
+    
+    private int helper(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        
+        int left = Math.max(0, helper(root.left));
+        int right = Math.max(0, helper(root.right));
+        maxPathSum = Math.max(maxPathSum, left + right + root.val);
+        return Math.max(left, right) + root.val;
+    }     
 }
