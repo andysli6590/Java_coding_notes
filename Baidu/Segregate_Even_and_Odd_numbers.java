@@ -33,7 +33,7 @@ class SegregateOddEven {
             }    
  
             /* Decrement right index while we see 1 at right */
-            while (arr[right]%2 == 1 && left < right) {
+            while (arr[right] % 2 == 1 && left < right) {
                 right--;
             }    
  
