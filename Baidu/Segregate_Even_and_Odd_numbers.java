@@ -8,7 +8,8 @@ Example
 
 Input  = {12, 34, 45, 9, 8, 90, 3}
 Output = {12, 34, 8, 90, 45, 9, 3} 
-In the output, order of numbers can be changed, i.e., in the above example 34 can come before 12 and 3 can come before 9.
+In the output, order of numbers can be changed, 
+i.e., in the above example 34 can come before 12 and 3 can come before 9.
 
 Algorithm: segregateEvenOdd()
 1) Initialize two index variables left and right:  
